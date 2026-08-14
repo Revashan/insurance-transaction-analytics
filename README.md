@@ -1,7 +1,4 @@
 # Insurance Transaction Analytics — Airflow + PostgreSQL + Power BI
-
-A GitHub-ready end-to-end insurance analytics engineering project for Windows users.
-
 ## Business questions
 - How much premium is successfully collected each month?
 - Which products have the highest loss ratio?
