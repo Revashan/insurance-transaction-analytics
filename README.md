@@ -2,9 +2,6 @@
 
 A GitHub-ready end-to-end insurance analytics engineering project for Windows users.
 
-> **Important:** the dataset is synthetic and deterministic (seed 42). It is intentionally created for portfolio use
-> and does not contain real customer or insurer data.
-
 ## Business questions
 - How much premium is successfully collected each month?
 - Which products have the highest loss ratio?
@@ -79,16 +76,6 @@ insurance_transaction_analytics/
 The staging load is intentionally replace-based and the warehouse is UPSERT-based, which makes task retries safe
 for this portfolio pipeline.
 
-## Windows execution
-See **SETUP_WINDOWS.md**. Short version:
-
-```powershell
-docker compose build
-docker compose up -d
-docker compose ps
-```
-
-Open Airflow at `http://localhost:8080`.
 
 ## PostgreSQL schemas
 - `staging`: source-shaped tables
@@ -125,10 +112,8 @@ Open Airflow at `http://localhost:8080`.
 | Fraud flagged claims | 381 |
 
 ## Power BI
-Use `data/processed/powerbi/` for a fast demo or connect Power BI to the PostgreSQL service at port 5433.
-All measures are provided in `powerbi/measures.dax`.
 
-Recommended page:
+Dax measure :
 - KPI cards: Premium, Approved Claims, Loss Ratio, Success Rate, Active Policies, Renewal Rate
 - Monthly premium vs claims trend
 - Loss ratio by product
@@ -148,9 +133,6 @@ The Airflow quality task fails the DAG if it detects:
 
 ## Testing
 With local Python dependencies installed:
-```bash
-pytest -q
-```
 
 ## Security / production hardening
 This repository is intentionally local-development friendly. Before production:
@@ -161,9 +143,8 @@ This repository is intentionally local-development friendly. Before production:
 - enable SSO/RBAC;
 - add encrypted network connections, backups, vulnerability scanning and CI/CD.
 
-## Dashboard image
+## Power bi Dashboard image
 See `screenshots/insurance_powerbi_dashboard_preview.png`.
 
-**Note:** the included image is a Power BI-style dashboard preview generated from the exact project dataset.
-It is not falsely represented as an exported `.pbix` screenshot; open the supplied model/DAX in Power BI Desktop
-to create the native interactive report.
+## Author
+Revathy Shanmugaraj
