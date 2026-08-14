@@ -1,0 +1,43 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: insurance-analytics-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql/docker_postgres_init.sql:/docker-entrypoint-initdb.d/00-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  airflow:
+    build: .
+    container_name: insurance-analytics-airflow
+    command: standalone
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+      AIRFLOW__CORE__DAGS_FOLDER: /opt/airflow/project/dags
+      ANALYTICS_DB_URL: postgresql://analytics:analytics@postgres:5432/insurance_analytics
+      PROJECT_ROOT: /opt/airflow/project
+      PYTHONPATH: /opt/airflow/project
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/opt/airflow/project
+      - airflow_home:/opt/airflow
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  airflow_home:
