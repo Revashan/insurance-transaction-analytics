@@ -141,7 +141,7 @@ This repository is intentionally local-development friendly. Before production:
 - add encrypted network connections, backups, vulnerability scanning and CI/CD.
 
 ## Power bi Dashboard image
-See [powerbi/screenshots/insurance_powerbi_dashboard_preview.png].
+See ![Insurance Transaction Analytics Dashboard](screenshots/insurance_powerbi_dashboard_preview.png)
 
 ## Author
 Revathy Shanmugaraj
