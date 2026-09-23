@@ -1,4 +1,4 @@
-# Insurance Transaction Analytics — Airflow + PostgreSQL + Power BI
+# Insurance Transaction Analytics — 
 ## Business questions
 - How much premium is successfully collected each month?
 - Which products have the highest loss ratio?
@@ -10,7 +10,6 @@
 
 ## Architecture
 
-```mermaid
 flowchart LR
     A[Raw CSV files] --> B[Airflow validate]
     B --> C[PostgreSQL staging]
@@ -32,7 +31,6 @@ flowchart LR
 
 ## Repository structure
 
-```text
 insurance_transaction_analytics/
 ├── dags/
 │   └── insurance_transaction_analytics_dag.py
@@ -141,7 +139,7 @@ This repository is intentionally local-development friendly. Before production:
 - add encrypted network connections, backups, vulnerability scanning and CI/CD.
 
 ## Power bi Dashboard image
-See ![Insurance Transaction Analytics Dashboard](screenshots/insurance_powerbi_dashboard_preview.png)
+See ![insurance-transaction-analytics](screenshots/insurance_powerbi_dashboard_preview.png)
 
 ## Author
 Revathy Shanmugaraj
