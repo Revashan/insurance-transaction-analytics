@@ -46,23 +46,16 @@ insurance_transaction_analytics/
 │   ├── 04_upsert_facts.sql
 │   ├── 05_marts.sql
 │   ├── 06_analysis_queries.sql
-│   └── docker_postgres_init.sql
 ├── data/
 │   ├── raw/
 │   └── processed/powerbi/
 ├── powerbi/
 │   ├── measures.dax
-│   └── POWER_BI_GUIDE.md
 ├── tests/
 │   └── test_data_quality.py
 ├── screenshots/
 │   └── insurance_powerbi_dashboard_preview.png
-├── docs/
-│   └── DATA_DICTIONARY.md
-├── Dockerfile
-├── docker-compose.yml
-├── SETUP_WINDOWS.md
-└── PROJECT_SUMMARY.md
+
 ```
 
 ## Pipeline DAG
@@ -70,13 +63,6 @@ insurance_transaction_analytics/
 
 The staging load is intentionally replace-based and the warehouse is UPSERT-based, which makes task retries safe
 for this portfolio pipeline.
-
-
-## PostgreSQL schemas
-- `staging`: source-shaped tables
-- `warehouse`: dimensions and facts
-- `mart`: BI reporting views
-- `audit`: pipeline execution evidence
 
 ## Data model
 - `dim_customer`
@@ -126,17 +112,6 @@ The Airflow quality task fails the DAG if it detects:
 - orphan fact-to-policy relationships;
 - empty critical warehouse tables.
 
-## Testing
-With local Python dependencies installed:
-
-## Security / production hardening
-This repository is intentionally local-development friendly. Before production:
-- remove plaintext local credentials;
-- use a secrets manager;
-- deploy on a supported Linux/Kubernetes environment;
-- externalize logs;
-- enable SSO/RBAC;
-- add encrypted network connections, backups, vulnerability scanning and CI/CD.
 
 ## Power bi Dashboard 
 See ![insurance-transaction-analytics](powerbi/screenshots/insurance_powerbi_dashboard_preview.png)
