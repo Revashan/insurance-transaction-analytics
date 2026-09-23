@@ -138,8 +138,8 @@ This repository is intentionally local-development friendly. Before production:
 - enable SSO/RBAC;
 - add encrypted network connections, backups, vulnerability scanning and CI/CD.
 
-## Power bi Dashboard image
-See ![insurance-transaction-analytics](screenshots/insurance_powerbi_dashboard_preview.png)
+## Power bi Dashboard 
+See ![insurance-transaction-analytics](powerbi/screenshots/insurance_powerbi_dashboard_preview.png)
 
 ## Author
 Revathy Shanmugaraj
